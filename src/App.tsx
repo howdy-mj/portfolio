@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { Footer, Header, Nav, Project } from './components';
+import { CategoryTitle, Lego } from './components/ui';
+import styled from 'styled-components';
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Nav />
+      <Main>
+        <CategoryTitle>About</CategoryTitle>
+        <Project />
+      </Main>
+      {/* <Lego /> */}
+      <Footer />
     </div>
   );
-}
+};
+
+const Main = styled.main`
+  width: 90rem;
+  margin: 0 auto;
+`;
 
 export default App;
