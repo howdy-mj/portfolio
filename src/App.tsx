@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
-import { Footer, Header, Nav, Project } from './components';
-import { CategoryTitle, Lego } from './components/ui';
 import styled from 'styled-components';
+import { Footer, Header, Nav } from './components';
+import { About, Projects } from './pages';
 
 const App: FC = () => {
   return (
     <div>
       <Header />
-      <Nav />
+      {/* <Nav /> */}
       <Main>
-        <CategoryTitle>About</CategoryTitle>
-        <Project />
+        <About />
+        <Projects />
       </Main>
       {/* <Lego /> */}
       <Footer />
@@ -20,7 +20,7 @@ const App: FC = () => {
 
 const Main = styled.main`
   width: 90rem;
-  margin: 0 auto;
+  margin: 5rem auto;
 `;
 
 export default App;

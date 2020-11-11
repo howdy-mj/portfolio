@@ -1,52 +1,90 @@
 import React from 'react';
 import styled from 'styled-components';
 import ex from '../../images/logo_trans.png';
+import { AiFillGithub, AiFillYoutube, AiOutlineGlobal } from 'react-icons/ai';
 
 interface ProjectProps {
-  stack?: string[];
-  javascript?: boolean;
-  typescript?: boolean;
-  react?: boolean;
-  next?: boolean;
-  scss?: boolean;
-  styledComponents?: boolean;
-  storybook?: boolean;
-  github?: string;
+  title: string;
+  subtitle: string;
+  stacks: string[];
+  img?: string;
+  period: string[];
+  github: string;
+  description?: string;
   youtube?: string;
   web?: string;
 }
 
-const Project: React.FC<ProjectProps> = () => {
+const Project = (props: ProjectProps): JSX.Element => {
+  const {
+    title,
+    subtitle,
+    stacks,
+    img = ex,
+    period,
+    github,
+    description = null,
+    youtube = null,
+    web = null,
+  } = props;
   return (
     <Wrap>
-      <Img src={ex} alt="project img" />
+      <Img src={img} alt="project img" />
       <Description>
-        <Title>GDAC</Title>
-        <SubTitle>암호화폐 거래소 지닥 클론</SubTitle>
+        <Title>{title}</Title>
+        <SubTitle>{subtitle}</SubTitle>
+        <div>{period}</div>
+        {description && <div>{description}</div>}
         <Stacks>
-          <Stack>JavaScript</Stack>
-          <Stack>React</Stack>
+          {stacks &&
+            stacks.map((stack, index) => (
+              <Stack key={index} stack={stack}>
+                {stack}
+              </Stack>
+            ))}
         </Stacks>
+        <More>
+          {github && (
+            <a href={github} target="blank">
+              <GithubImg />
+            </a>
+          )}
+          {youtube && (
+            <a href={youtube} target="blank">
+              <YoutubeImg />
+            </a>
+          )}
+          {web && (
+            <a href={web} target="blank">
+              <AiOutlineGlobal />
+            </a>
+          )}
+        </More>
       </Description>
     </Wrap>
   );
 };
 
+interface StackStyleProps {
+  stack?: string;
+}
+
 const Wrap = styled.div`
-  border: 1px solid gray;
   border-radius: 1rem;
-  width: 30rem;
-  height: 50rem;
+  display: flex;
+  margin: 2rem 0;
+  position: relative;
 `;
 
 const Img = styled.img`
-  border: 1px solid red;
-  width: 100%;
+  width: 30rem;
+  height: 20rem;
   object-fit: cover;
+  border-radius: 1rem;
 `;
 
 const Description = styled.div`
-  padding: 1rem 1rem;
+  margin-left: 2rem;
 `;
 
 const Title = styled.h2``;
@@ -58,18 +96,33 @@ const SubTitle = styled.h4`
 
 const Stacks = styled.div`
   display: flex;
+  margin: 1rem 0;
 `;
 
-const Stack = styled.div`
-  border: 1px solid yellow;
+const Stack = styled.div<StackStyleProps>`
   border-radius: 2rem;
-  background-color: yellow;
-  padding: 0 0.5rem;
+  color: white;
+  background-color: ${(props) => props.theme.test};
+  padding: 0.3rem 0.8rem;
   font-size: 1.3rem;
-
   &:not(:last-child) {
     margin-right: 0.5rem;
   }
+`;
+
+const More = styled.div`
+  display: flex;
+  /* position: absolute;
+  bottom: 0; */
+`;
+
+const GithubImg = styled(AiFillGithub)`
+  font-size: 2.5rem;
+`;
+
+const YoutubeImg = styled(AiFillYoutube)`
+  font-size: 2.5rem;
+  color: red;
 `;
 
 export default Project;

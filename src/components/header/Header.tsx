@@ -17,6 +17,7 @@ const Wrap = styled.header`
   background-color: ${(props) => props.theme.primaryColor};
   align-items: center;
   justify-content: center;
+  border-bottom: 5px solid black;
 `;
 
 const Logo = styled.img`

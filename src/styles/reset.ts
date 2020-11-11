@@ -4,6 +4,7 @@ import { size } from './theme';
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Lego';
+    font-weight: normal;
     src: url('./fonts/Legothick.ttf') format('truetype');
   }
 
